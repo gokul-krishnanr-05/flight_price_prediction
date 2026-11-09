@@ -1,69 +1,157 @@
-# Flight Fare Prediction: 
+# ✈️ Flight Price Prediction
 
-## Table of Content
-  * [Demo](#demo)
-  * [Overview](#overview)
-  * [Motivation](#motivation)
-  * [Installation](#installation)
-  * [Deployement on Heroku](#deployement-on-heroku)
-  * [Directory Tree](#directory-tree)
-  * [Bug / Feature Request](#bug---feature-request)
-  * [Future scope of project](#future-scope)
+A machine learning web application that predicts flight ticket prices based on journey details such as airline, source, destination, departure/arrival times, and total stops.
 
+Built with **Flask**, **scikit-learn (Random Forest)**, and **HTML/CSS (Bootstrap)**.
 
-## Demo
-Link: [https://flight-price-prediction-api.herokuapp.com/](https://flight-price-prediction-api.herokuapp.com/)
+---
 
-[![](https://i.imgur.com/R1g2wvC.png)](https://flight-price-prediction-api.herokuapp.com/)
+## 📸 Demo
 
-[![](https://i.imgur.com/p0aeL6c.png)](https://flight-price-prediction-api.herokuapp.com/)
+> Add a screenshot or GIF of your running app here.
 
-## Overview
-This is a Flask web app which predicts fare of Flight ticket.
+---
 
-## Motivation
-What to do when you are at home due to this pandemic situation? I started to learn Machine Learning model to get most out of it. I came to know mathematics behind all supervised models. Finally it is important to work on application (real world application) to actually make a difference.
+## 🚀 Features
 
-## Installation
-The Code is written in Python 3.6.10. If you don't have Python installed you can find it [here](https://www.python.org/downloads/). If you are using a lower version of Python you can upgrade using the pip package, ensuring you have the latest version of pip. To install the required packages and libraries, run this command in the project directory after [cloning](https://www.howtogeek.com/451360/how-to-clone-a-github-repository/) the repository:
+- ✅ Predict flight prices in Indian Rupees (₹)
+- ✅ Input form for departure/arrival date & time
+- ✅ Select source and destination cities
+- ✅ Choose airline from 13 carriers
+- ✅ Select number of stops (0–4)
+- ✅ One-hot encoded categorical features
+- ✅ Deployable to Heroku via `Procfile` + `gunicorn`
+
+---
+
+## 🛠️ Tech Stack
+
+| Layer | Technology |
+|-------|------------|
+| Frontend | HTML5, CSS3, Bootstrap 4 |
+| Backend | Flask (Python) |
+| ML Model | Random Forest Regressor (scikit-learn) |
+| Data Handling | pandas, numpy |
+| Deployment | gunicorn, Heroku-ready |
+
+---
+
+## 📦 Installation
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/gracemann365/Flight-Price-Prediction.git
+cd Flight-Price-Prediction
+```
+
+### 2. Create a virtual environment
+
+```bash
+python -m venv venv
+# Windows
+venv\Scripts\activate
+# macOS/Linux
+source venv/bin/activate
+```
+
+### 3. Install dependencies
+
 ```bash
 pip install -r requirements.txt
 ```
 
-## Deployement on Heroku
-Login or signup in order to create virtual app. You can either connect your github profile or download ctl to manually deploy this project.
+### 4. Run the app
 
-[![](https://i.imgur.com/dKmlpqX.png)](https://heroku.com)
-
-Our next step would be to follow the instruction given on [Heroku Documentation](https://devcenter.heroku.com/articles/getting-started-with-python) to deploy a web app.
-
-## Directory Tree 
-```
-├── static 
-│   ├── css
-├── template
-│   ├── home.html
-├── Procfile
-├── README.md
-├── app.py
-├── flight_price.ipynb
-├── flight_rf.pkl
-├── requirements.txt
+```bash
+python app.py
 ```
 
-## Technologies Used
+Open your browser at **`http://127.0.0.1:5000/`**
 
-![](https://forthebadge.com/images/badges/made-with-python.svg)
+---
 
-[<img target="_blank" src="https://flask.palletsprojects.com/en/1.1.x/_images/flask-logo.png" width=170>](https://flask.palletsprojects.com/en/1.1.x/) [<img target="_blank" src="https://number1.co.za/wp-content/uploads/2017/10/gunicorn_logo-300x85.png" width=280>](https://gunicorn.org) [<img target="_blank" src="https://scikit-learn.org/stable/_static/scikit-learn-logo-small.png" width=200>](https://scikit-learn.org/stable/) 
+## 📁 Project Structure
 
+```
+Flight-Price-Prediction/
+├── app.py                  # Flask application entry point
+├── flight_rf.pkl           # Trained Random Forest model
+├── flight_price.ipynb      # Jupyter notebook: EDA + model training
+├── Procfile                # Heroku deployment config
+├── requirements.txt        # Python dependencies
+├── .gitignore              # Git ignore rules
+├── README.md               # Project documentation
+├── templates/
+│   └── home.html           # Frontend form template
+└── static/
+    └── css/
+        └── styles.css      # Custom styles
+```
 
-## Bug / Feature Request
+---
 
-If you find a bug (the website couldn't handle the query and / or gave undesired results), kindly open an [issue](https://github.com/Mandal-21/Flight-Price-Prediction/issues) here by including your search query and the expected result
+## 🧠 Model Details
 
-## Future Scope
+- **Algorithm:** Random Forest Regressor
+- **Training Data:** Flight price dataset with ~10,000+ records
+- **Features:** 29 engineered features including:
+  - Journey date (day, month)
+  - Departure & arrival time (hour, minute)
+  - Duration (hours, minutes)
+  - Total stops
+  - Airline (one-hot encoded, 11 columns)
+  - Source city (one-hot encoded, 4 columns)
+  - Destination city (one-hot encoded, 5 columns)
 
-* Use multiple Algorithms
-* Optimize Flask app.py
-* Front-End 
+See `flight_price.ipynb` for the full exploratory data analysis and training pipeline.
+
+---
+
+## ☁️ Deployment (Heroku)
+
+This project is ready to deploy on Heroku:
+
+```bash
+heroku create your-app-name
+git push heroku main
+heroku open
+```
+
+The `Procfile` is configured to run with **gunicorn**:
+
+```
+web: gunicorn app:app
+```
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Please follow these steps:
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/your-feature`)
+3. Commit your changes (`git commit -m 'Add some feature'`)
+4. Push to the branch (`git push origin feature/your-feature`)
+5. Open a Pull Request
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+## 👨‍💻 Author
+
+**gracemann365**  
+[GitHub Profile](https://github.com/gracemann365)
+
+---
+
+## ⭐ Acknowledgments
+
+- Dataset: Flight price prediction dataset (Kaggle)
+- Built with ❤️ using Flask and scikit-learn
